@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orprocon Contabilidade | Gestão Contábil em Tubarão - SC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0F2C59;
+            --secondary-color: #3F72AF;
+            --accent-color: #FF9F43;
+            --light-bg: #F9F7F7;
+            --dark-text: #1E2022;
+            --muted-text: #686D76;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--dark-text);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 8px 10%;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 17px;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            height: 80px;
+            width: auto;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .btn-cta {
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-cta:hover {
+            background-color: #e68a2e;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('hero-banner.png') no-repeat center center/cover;
+            aspect-ratio: 2400 / 760;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                aspect-ratio: 2400 / 760;
+            }
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .hero .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 30px 10% 40px 10%;
+            background-color: var(--light-bg);
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-subtitle {
+            color: var(--muted-text);
+            margin-bottom: 50px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        @media (max-width: 900px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Equipe */
+        .team {
+            background-color: var(--light-bg, #f7f9fb);
+            text-align: center;
+            padding: 0 10%;
+            transition: padding 0.3s;
+        }
+
+        .team.has-content {
+            padding: 40px 10% 80px 10%;
+        }
+
+        .team-content {
+            display: none;
+        }
+
+        .team-content.visible {
+            display: block;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 1100px) {
+            .team-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .team-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 450px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .team-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .team-card img {
+            width: 100%;
+            aspect-ratio: 989 / 1600;
+            object-fit: cover;
+            display: block;
+            cursor: zoom-in;
+        }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+            padding: 20px;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        .lightbox-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: var(--white);
+            font-size: 40px;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .team-card-info {
+            padding: 18px 15px;
+        }
+
+        .team-card-info h4 {
+            color: var(--primary-color);
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .team-card-info span {
+            color: var(--muted-text);
+            font-size: 13px;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            padding: 25px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: left;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .service-icon {
+            font-size: 32px;
+            color: var(--secondary-color);
+            margin-bottom: 14px;
+        }
+
+        .service-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 17px;
+        }
+
+        .service-card p {
+            color: var(--muted-text);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* About Section */
+        .about {
+            padding: 60px 10% 10px 10%;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .about h2 {
+            text-align: left;
+        }
+
+        .about p {
+            color: var(--muted-text);
+            margin-bottom: 20px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 40px 10% 80px 10%;
+            background-color: var(--light-bg);
+        }
+
+        .contact-container {
+            display: flex;
+            gap: 50px;
+            margin-top: 40px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .info-item {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .info-item p {
+            color: var(--muted-text);
+        }
+
+        .contact-form {
+            flex: 1.5;
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #DDDDDD;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        .btn-submit {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 14px 30px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 40px 10% 20px 10%;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .footer-content {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            margin: 0 15px;
+            opacity: 0.8;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .top-bar { display: none; }
+            header { flex-direction: column; gap: 15px; text-align: center; }
+            nav ul { margin-bottom: 15px; }
+            .hero h1 { font-size: 32px; }
+            .about { flex-direction: column-reverse; }
+            .contact-container { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div>📍 Av. Marcolino Martins Cabral, Tubarão - SC</div>
+        <div>📞 (48) 3052-3288 | ✉️ contato@orprocon.com.br</div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo"><img src="logo-orprocon.png" alt="Logo Orprocon"></div>
+        <nav>
+            <ul>
+                <li><a href="#home">Início</a></li>
+                <li><a href="#sobre">Quem Somos</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#equipe" id="link-equipe">Nossa Equipe</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+        <a href="area_do_cliente.html" class="btn-cta">Área do Cliente</a>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="hero"></section>
+
+    <!-- Sobre -->
+    <section id="sobre" class="about">
+        <div class="about-content">
+            <h2 class="section-title" style="text-align: left;">Tradição e Inovação</h2>
+            <p style="margin-top: 20px;">Com décadas de atuação no mercado de Tubarão/SC, a <strong>Orprocon Contabilidade</strong> alia a solidez da experiência tradicional com as ferramentas tecnológicas mais modernas do setor contábil.</p>
+            <p>Nosso objetivo é desburocratizar a gestão fiscal, tributária e trabalhista da sua empresa, permitindo que você foque exclusivamente no que faz de melhor: gerenciar e expandir o seu negócio.</p>
+        </div>
+        <div class="about-image">
+            <img src="escritorio.webp" alt="Escritório Contábil Orprocon">
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section id="servicos" class="services">
+        <h2 class="section-title">Nossas Soluções</h2>
+        <p class="section-subtitle">Serviços especializados para cada etapa e necessidade da sua empresa</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-building"></i></div>
+                <h3>Abertura de Empresas</h3>
+                <p>Orientação na escolha do melhor tipo jurídico, planejamento tributário inicial e emissão de alvarás de forma ágil e segura.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                <h3>Gestão Contábil</h3>
+                <p>Elaboração de balancetes, balanços patrimoniais e relatórios gerenciais precisos para dar suporte às suas decisões financeiras.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                <h3>Planejamento Tributário</h3>
+                <p>Análise detalhada para enquadrar sua empresa no regime mais econômico (Simples Nacional, Lucro Presumido ou Real), reduzindo impostos legalmente.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-users"></i></div>
+                <h3>Departamento Pessoal</h3>
+                <p>Gestão completa da folha de pagamento, admissões, demissões, eSocial, férias e todas as obrigações trabalhistas da sua equipe.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                <h3>Departamento Fiscal</h3>
+                <p>Apuração de impostos, emissão de guias e entrega das obrigações acessórias dentro dos prazos, garantindo total conformidade fiscal.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-file-contract"></i></div>
+                <h3>Departamento Societário</h3>
+                <p>Alterações contratuais, distribuição de lucros, transformação societária e todo o suporte jurídico-contábil para a estrutura da sua empresa.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-certificate"></i></div>
+                <h3>Certificação Digital</h3>
+                <p>Emissão e renovação de certificados digitais e-CPF e e-CNPJ, garantindo acesso seguro aos órgãos públicos e sistemas fiscais.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-stamp"></i></div>
+                <h3>Gestão de Alvarás</h3>
+                <p>Emissão, renovação e regularização de alvarás e licenças municipais, estaduais e sanitárias para manter sua empresa em conformidade.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossa Equipe -->
+    <section id="equipe" class="team">
+        <div class="team-content" id="team-content">
+            <h2 class="section-title">Nossa Equipe</h2>
+            <p class="section-subtitle">Profissionais dedicados a cuidar da contabilidade da sua empresa</p>
+
+            <div class="team-grid" id="team-grid">
+                <div class="team-card">
+                    <img src="equipe/01-carlos-roberto.jpg" alt="Membro da equipe Orprocon">
+                </div>
+                <div class="team-card">
+                    <img src="equipe/02-andrei.jpg" alt="Membro da equipe Orprocon">
+                </div>
+                <div class="team-card">
+                    <img src="equipe/03-eliane.jpg" alt="Membro da equipe Orprocon">
+                </div>
+                <div class="team-card">
+                    <img src="equipe/04-mario-henrique.jpg" alt="Membro da equipe Orprocon">
+                </div>
+                <div class="team-card">
+                    <img src="equipe/05-chay.jpg" alt="Membro da equipe Orprocon">
+                </div>
+                <div class="team-card">
+                    <img src="equipe/06-ezequiel.jpg" alt="Membro da equipe Orprocon">
+                </div>
+                <div class="team-card">
+                    <img src="equipe/07-katia.jpg" alt="Membro da equipe Orprocon">
+                </div>
+                <div class="team-card">
+                    <img src="equipe/08-karla-lopes.jpg" alt="Membro da equipe Orprocon">
+                </div>
+                <div class="team-card">
+                    <img src="equipe/09-mariana.jpg" alt="Membro da equipe Orprocon">
+                </div>
+                <div class="team-card">
+                    <img src="equipe/10-sandro.jpg" alt="Membro da equipe Orprocon">
+                </div>
+                <div class="team-card">
+                    <img src="equipe/11-jessica.jpg" alt="Membro da equipe Orprocon">
+                </div>
+                <div class="team-card">
+                    <img src="equipe/12-karla.jpg" alt="Membro da equipe Orprocon">
+                </div>
+                <div class="team-card">
+                    <img src="equipe/13-reginaldo.jpg" alt="Membro da equipe Orprocon">
+                </div>
+                <div class="team-card">
+                    <img src="equipe/14-naiara.jpg" alt="Membro da equipe Orprocon">
+                </div>
+                <div class="team-card">
+                    <img src="equipe/15-gisele.jpg" alt="Membro da equipe Orprocon">
+                </div>
+                <div class="team-card">
+                    <img src="equipe/16-narhel.jpg" alt="Membro da equipe Orprocon">
+                </div>
+                <div class="team-card">
+                    <img src="equipe/17-luiz-antonio.jpg" alt="Membro da equipe Orprocon">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="contact">
+        <h2 class="section-title">Solicite uma Consultoria</h2>
+        <p class="section-subtitle" style="text-align: center;">Preencha o formulário abaixo e um de nossos especialistas entrará em contato</p>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Informações de Contato</h3>
+                <div class="info-item">
+                    <span>🏢</span>
+                    <div>
+                        <strong>Endereço:</strong>
+                        <p>Av. Marcolino Martins Cabral, Centro<br>Tubarão - SC, CEP 88701-001</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <span>📞</span>
+                    <div>
+                        <strong>Telefone / WhatsApp:</strong>
+                        <p>(48) 3052-3288</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <span>✉️</span>
+                    <div>
+                        <strong>E-mail:</strong>
+                        <p>contato@orprocon.com.br</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <span>📋</span>
+                    <div>
+                        <strong>Registro:</strong>
+                        <p>CRC/SC 00328/0</p>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form" action="https://formsubmit.co/contato@orprocon.com.br" method="POST">
+                <input type="hidden" name="_subject" value="Nova mensagem do site Orprocon">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_next" value="https://orprocondigital-web.github.io/relatorios-web/#contato">
+
+                <div class="form-group">
+                    <label for="name">Nome Completo</label>
+                    <input type="text" id="name" name="Nome" required placeholder="Digite seu nome">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail Corporativo</label>
+                    <input type="email" id="email" name="E-mail" required placeholder="Ex: seu-nome@empresa.com">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefone / WhatsApp</label>
+                    <input type="tel" id="phone" name="Telefone" required placeholder="(48) 99999-9999">
+                </div>
+                <div class="form-group">
+                    <label for="message">Como podemos ajudar sua empresa?</label>
+                    <textarea id="message" name="Mensagem" rows="4" required placeholder="Descreva brevemente sua necessidade..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Enviar Mensagem</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#home">Início</a>
+                <a href="#sobre">Quem Somos</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#contato">Contato</a>
+            </div>
+        </div>
+        <p>&copy; 2026 Orprocon Contabilidade. Todos os direitos reservados. Tubarão - SC.</p>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox-overlay" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img src="" alt="Foto ampliada" id="lightbox-img">
+    </div>
+
+    <script>
+        const teamContent = document.getElementById('team-content');
+        const teamSection = document.getElementById('equipe');
+
+        document.getElementById('link-equipe').addEventListener('click', function(e) {
+            e.preventDefault();
+            const isVisible = teamContent.classList.contains('visible');
+            if (isVisible) {
+                teamContent.classList.remove('visible');
+                teamSection.classList.remove('has-content');
+            } else {
+                teamContent.classList.add('visible');
+                teamSection.classList.add('has-content');
+                document.getElementById('equipe').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // Oculta a equipe ao clicar em qualquer outro link de navegação
+        document.querySelectorAll('header nav a, header .btn-cta').forEach(link => {
+            if (link.id !== 'link-equipe') {
+                link.addEventListener('click', function() {
+                    teamContent.classList.remove('visible');
+                    teamSection.classList.remove('has-content');
+                });
+            }
+        });
+
+        // Lightbox de zoom nas fotos da equipe
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        document.querySelectorAll('.team-card img').forEach(img => {
+            img.addEventListener('click', function() {
+                lightboxImg.src = this.src;
+                lightbox.classList.add('active');
+            });
+        });
+
+        lightbox.addEventListener('click', function() {
+            lightbox.classList.remove('active');
+            lightboxImg.src = '';
+        });
+    </script>
+</body>
+</html>
